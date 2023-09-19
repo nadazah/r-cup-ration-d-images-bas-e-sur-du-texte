@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+  <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <title>Bookmarks Search</title>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div style="background:transparent !important" class="jumbotron">
+      <div style="font-family: 'Pacifico', cursive;">
+        <p>
+        <div style='text-align: center'>
+          <p style='font-size: 20px; color: darkcyan;'>Zahra Nada queries</p>
+        </div>
+        </p>
+      </div>
+    </div>
+
+    <form action="/search/results" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control" name="input" placeholder="Search" autofocus>
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-group" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div style='text-align: center'>
+      <h1>Results: found {{ res['hits']['total']['value'] }} matchs </h1>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Source index</th>
+          <th>match</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for hit in res['hits']['hits'] %}
+        <tr>
+
+          <td>{{ hit['_index'] }}</td>
+          <td>{{ hit['_source']['title'] }}</td>
+          <td>
+            {% if hit['_source']['flickr_farm'] is defined and
+            hit['_source']['flickr_server'] is defined and
+            hit['_source']['id'] is defined and
+            hit['_source']['flickr_secret'] is defined %}
+            <img
+              src="http://farm{{ hit['_source']['flickr_farm'] }}.staticflickr.com/{{ hit['_source']['flickr_server'] }}/{{ hit['_source']['id'] }}_{{ hit['_source']['flickr_secret'] }}.jpg">
+            {% else %}
+            <p>Image non disponible</p>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+
+  </div>
+  </div>
+</body>
+
+</html>
