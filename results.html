@@ -19,28 +19,28 @@
       <div style="font-family: 'Pacifico', cursive;">
         <p>
         <div style='text-align: center'>
-          <p style='font-size: 20px; color: darkcyan;'>Zahra Nada queries</p>
+          <p style='font-size: 25px; color: rgba(73, 0, 242, 0.943);'>Zahra Queries</p>
         </div>
         </p>
       </div>
     </div>
 
     <form action="/search/results" method="post">
-      <div class="input-group">
+      <div class="input-group" style="border-color: brown; color: brown;">
         <input type="text" class="form-control" name="input" placeholder="Search" autofocus>
         <div class="input-group-btn">
-          <button class="btn btn-primary btn-group" type="submit">
+          <button class="btn btn-primary btn-group" type="submit" style="background-color: rgb(226, 43, 49);">
             <i class="glyphicon glyphicon-search"></i>
           </button>
         </div>
       </div>
     </form>
 
-    <div style='text-align: center'>
+    <div style='text-align: center;  padding-top: 70px; color:darkslateblue;'>
       <h1>Results: found {{ res['hits']['total']['value'] }} matchs </h1>
     </div>
 
-    <table class="table">
+    <table class="table" style="color:darkslateblue;">
       <thead>
         <tr>
           <th>Source index</th>
